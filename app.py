@@ -112,7 +112,7 @@ faiss_index = FAISS.from_documents(chunks, embedding)
 retriever = faiss_index.as_retriever()
 
 # Set up the chat model using MistralAI
-chat_model = ChatMistralAI(model_name="mistral-medium", api_key="YOUR_API_KEY")
+chat_model = ChatMistralAI(api_key="YOUR_API_KEY")
 
 # Set up the prompt
 prompt_template = """
@@ -156,5 +156,6 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
