@@ -90,7 +90,7 @@ def load_documents(files):
     return documents
 
 # Specify the files
-files = ["Cardio.txt", "NeuroSurgery.txt", "Orthopedic.txt", "Pediatric.txt"]
+files = ["Docs/Cardio.txt", "Docs/NeuroSurgery.txt", "Docs/Orthopedic.txt", "Docs/Pediatric.txt"]
 
 # Ensure the files exist at the specified paths
 for txt_file in files:
@@ -156,3 +156,4 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
