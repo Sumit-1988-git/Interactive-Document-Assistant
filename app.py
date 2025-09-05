@@ -90,12 +90,12 @@ def load_documents(files):
     return documents
 
 # Specify the files
-files = ["Chicken.pdf", "Mutton.pdf", "Prawn.pdf", "Fish.pdf"]
+files = ["Cardio.txt", "NeuroSurgery.txt", "Orthopedic.txt", "Pediatric.txt"]
 
 # Ensure the files exist at the specified paths
-for file in files:
-    if not os.path.exists(file):
-        st.markdown(f"<p class='error-message'>File not found: {file}</p>", unsafe_allow_html=True)
+for txt_file in files:
+    if not os.path.exists(txt_file):
+        st.markdown(f"<p class='error-message'>File not found: {txt_file}</p>", unsafe_allow_html=True)
         st.stop()
 
 documents = load_documents(files)
@@ -129,14 +129,14 @@ document_chain = create_stuff_documents_chain(chat_model, prompt)
 retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
 # Streamlit interface
-st.title("Interactive Recipe Assistant")
+st.title("Interactive Document Assistant")
 
-# Instructions on how to use the Recipe Assistant
+# Instructions on how to use the assistant
 st.markdown("""
     <div class="instructions">
         **Instructions:**
         1. Type your question in the text input below and click "Get Answer".
-        3. The chatbot will respond based on the content.
+        3. The assistant will respond based on the content of the uploaded txts.
     </div>
     """, unsafe_allow_html=True)
 
