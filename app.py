@@ -90,7 +90,13 @@ def load_documents(files):
     return documents
 
 # Specify the files
-files = ["Cardio.pdf", "NeuroSurgery.pdf", "Orthopedic.pdf", "Pediatric.pdf"]
+files = ["Chicken.pdf", "Mutton.pdf", "Prawn.pdf", "Fish.pdf"]
+
+# Ensure the files exist at the specified paths
+for file in files:
+    if not os.path.exists(file):
+        st.markdown(f"<p class='error-message'>File not found: {file}</p>", unsafe_allow_html=True)
+        st.stop()
 
 documents = load_documents(files)
 
@@ -123,15 +129,14 @@ document_chain = create_stuff_documents_chain(chat_model, prompt)
 retrieval_chain = create_retrieval_chain(retriever, document_chain)
 
 # Streamlit interface
-st.title("Text-based Conversational Bot")
+st.title("Interactive Recipe Assistant")
 
-# Instructions on how to use the chatbot
+# Instructions on how to use the Recipe Assistant
 st.markdown("""
     <div class="instructions">
         **Instructions:**
-        1. Upload the relevant PDFs for the chatbot to answer questions.
-        2. Type your question in the text input below and click "Get Answer".
-        3. The chatbot will respond based on the content of the uploaded PDFs.
+        1. Type your question in the text input below and click "Get Answer".
+        3. The chatbot will respond based on the content.
     </div>
     """, unsafe_allow_html=True)
 
@@ -151,4 +156,3 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
-
