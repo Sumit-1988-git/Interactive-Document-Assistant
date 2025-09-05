@@ -92,12 +92,6 @@ def load_documents(files):
 # Specify the files
 files = ["Cardio.pdf", "NeuroSurgery.pdf", "Orthopedic.pdf", "Pediatric.pdf"]
 
-# Ensure the files exist at the specified paths
-for pdf_file in files:
-    if not os.path.exists(pdf_file):
-        st.markdown(f"<p class='error-message'>File not found: {pdf_file}</p>", unsafe_allow_html=True)
-        st.stop()
-
 documents = load_documents(files)
 
 # Split the documents into smaller chunks
@@ -157,3 +151,4 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
