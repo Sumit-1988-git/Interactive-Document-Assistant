@@ -104,15 +104,16 @@ documents = load_documents(files)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 chunks = text_splitter.split_documents(documents)
 
+api_key = st.secrets["YOUR_API_KEY"]  # Ensure this is a string and correctly set
+
 # Create embeddings using MistralAI
-embedding = MistralAIEmbeddings()
+embedding = MistralAIEmbeddings(model="mistral-embed", mistral_api_key=api_key)
 faiss_index = FAISS.from_documents(chunks, embedding)
 
 # Set up the retriever
 retriever = faiss_index.as_retriever()
 
 # Set up the chat model using MistralAI
-api_key = "YOUR_API_KEY"  # Ensure this is a string and correctly set
 chat_model = ChatMistralAI(model_name="mistral-medium", api_key=api_key)
 
 # Set up the prompt
@@ -157,6 +158,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
