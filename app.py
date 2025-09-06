@@ -38,10 +38,6 @@ chat_model = ChatMistralAI(model_name="mistral-medium", api_key=mistral_api_key)
 # Set up the prompt
 prompt = ChatPromptTemplate.from_template("""You are a helpful assistant. Based on the given context, please answer the user's question:
 
-<context>
-{context}
-</context>
-
 Question: {input}""")
 
 # Create the retrieval chain
@@ -90,6 +86,7 @@ if st.button("Get Answer"):
 
      
     
+
 
 
 
