@@ -76,8 +76,8 @@ st.markdown(""" <div class="instructions">
 
 # Input field for user's question
 
-if 'user_query' not in st.session_state:
-    st.session_state.user_query = ""
+# if 'user_query' not in st.session_state:
+#     st.session_state.user_query = ""
 
 user_query = st.text_input("Ask a question:", value=st.session_state.user_query)
 
@@ -91,6 +91,7 @@ if st.button("Get Answer"):
         st.markdown('Bot:'  f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
