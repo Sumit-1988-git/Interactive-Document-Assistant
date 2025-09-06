@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from langchain_community.document_loaders import TextLoader,DirectoryLoader
+from langchain_community.document_loaders import TextLoader,DirectoryLoader,PyPDFLoader #,UnstructuredPDFLoader
 from langchain_mistralai.chat_models import ChatMistralAI
 from langchain_mistralai.embeddings import MistralAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -83,9 +83,9 @@ st.markdown("""
 # Load and preprocess documents
 loader = DirectoryLoader(
     "Docs/",
-    glob="**/*.txt",  # Load all .txt files recursively
-    loader_cls=TextLoader,
-    show_progress=True
+    #glob="**/*.txt",  # Load all .txt files recursively
+    glob="**/*.pdf",  # Load all .pdf files recursively
+    loader_cls=PyPDFLoader #TextLoader
 )
 
 documents = loader.load()
@@ -148,6 +148,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
