@@ -97,7 +97,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=20
 chunks = text_splitter.split_documents(documents)
 
 # Create embeddings using MistralAI
-embedding = MistralAIEmbeddings(model_name='mistral-embed', mistral_api_key=mistral_api_key)
+embedding = MistralAIEmbeddings(mistral_api_key=mistral_api_key)
 faiss_index = FAISS.from_documents(chunks, embedding)
 
 # Set up the retriever
@@ -148,5 +148,6 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
