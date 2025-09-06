@@ -79,7 +79,7 @@ st.markdown(""" <div class="instructions">
 # if 'user_query' not in st.session_state:
 #     st.session_state.user_query = ""
 
-user_query = st.text_input("Ask a question:", value=st.session_state.user_query)
+user_query = st.text_input("Ask a question:")
 
 # Button to submit the query
 if st.button("Get Answer"):
@@ -89,8 +89,10 @@ if st.button("Get Answer"):
         response = retrieval_chain.invoke({"input": user_query})
         # Display bot's response as a chat bubble
         st.markdown('Bot:'  f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
+         st.text_input=""
     else:
         st.write("Please enter a question.")
+
 
 
 
