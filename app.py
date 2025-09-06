@@ -36,14 +36,13 @@ retriever = faiss_index.as_retriever()
 chat_model = ChatMistralAI(model_name="mistral-medium", api_key=mistral_api_key)
 
 # Set up the prompt
-prompt_template = """
-You are a helpful assistant. Based on the given context, please answer the user's question:
+prompt = ChatPromptTemplate.from_template("""You are a helpful assistant. Based on the given context, please answer the user's question:
+
+<context>
 {context}
+</context>
 
-User's Question: {question}
-"""
-
-prompt = ChatPromptTemplate.from_messages([("system", prompt_template)])
+Question: {input}""")
 
 # Create the retrieval chain
 document_chain = create_stuff_documents_chain(chat_model, prompt)
@@ -73,22 +72,23 @@ if st.button("Get Answer"):
         # Display user's question as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
 
+    response = retrieval_chain.invoke({"input": user_query})
+
         # Run the retrieval_chain to get the response
         # Extract context from chunks (combining them into a single string)
-        context = " ".join([chunk.page_content for chunk in chunks])  # Assuming chunks contain the relevant context
+        # context = " ".join([chunk.page_content for chunk in chunks])  # Assuming chunks contain the relevant context
 
         # Pass the correct format: both `context` and `question` in the dictionary
-        response = retrieval_chain.invoke({
-            "context": context,  # Correct key for context
-            "question": user_query,  # Correct key for question
-            "input": user_query
-        })
+        # response = retrieval_chain.invoke({
+        #     "context": context,  # Correct key for context
+        #     "question": question ,  # Correct key for question
+        #     "input": user_query
+        # })
 
-
-        # Display bot's response as a chat bubble
-        st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
+     
     else:
         st.write("Please enter a question.")
+
 
 
 
