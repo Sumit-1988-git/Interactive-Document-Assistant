@@ -1,4 +1,5 @@
 streamlit
+faiss-cpu
 langchain
 langchain-mistralai
 langchain_community
