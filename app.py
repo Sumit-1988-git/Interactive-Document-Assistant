@@ -53,11 +53,23 @@ st.title("Interactive Document Assistant")
 
 # Instructions on how to use the assistant
 st.markdown(""" <div class="instructions">
-        **Instructions:**
+        Instructions:
         
         1. Type your question in the text input below and click "Get Answer".
         
-        2. The assistant will respond based on the content of the PDFs.
+        2.It contains 4 PDFs
+            * Cardio.pdf
+            * NeuroSurgery.pdf
+            * Orthopedic.pdf
+            * Pediatric.pdf
+
+        3. The assistant will respond based on the content of the PDFs.
+
+        4.Sample Questions:
+            * How much is the haemoglobin concentration?
+            * What did the CT scan of brain showed?
+            * What was the potential harm identified regarding need of transfusion?
+            * What does xray report says about lumbar disc?
         
     </div>
  """ , unsafe_allow_html=True)
@@ -76,6 +88,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
