@@ -4,3 +4,6 @@ langchain
 langchain-mistralai
 langchain_community
 mistralai==0.4.2
+unstructured
+pypdf
+
