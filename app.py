@@ -75,11 +75,14 @@ st.markdown(""" <div class="instructions">
  """ , unsafe_allow_html=True)
 
 # Input field for user's question
-user_query = st.text_input("Ask a question:")
+
+if 'user_query' not in st.session_state:
+    st.session_state.user_query = ""
+
+user_query = st.text_input("Ask a question:", value=st.session_state.user_query)
 
 # Button to submit the query
 if st.button("Get Answer"):
-    st.text_input = ""
     if user_query:
         # Display user's question as a chat bubble
         st.markdown('User:'  f'<div class="chat-box"><div class="chat-bubble user" style="color: yellow; padding: 10px; border-radius: 15px;"> {user_query}</div></div>', unsafe_allow_html=True)
@@ -88,6 +91,7 @@ if st.button("Get Answer"):
         st.markdown('Bot:'  f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
