@@ -56,8 +56,11 @@ st.title("Interactive Document Assistant")
 st.markdown("""
     <div class="instructions">
         **Instructions:**
+        
         1. Type your question in the text input below and click "Get Answer".
-        3. The assistant will respond based on the content of the uploaded txts.
+        
+        2. The assistant will respond based on the content of the uploaded txts.
+        
     </div>
     """, unsafe_allow_html=True)
 
@@ -77,6 +80,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
