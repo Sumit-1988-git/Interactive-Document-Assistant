@@ -118,15 +118,3 @@ if st.button("Get Answer"):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
