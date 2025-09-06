@@ -53,7 +53,7 @@ st.title("Interactive Document Assistant")
 
 # Instructions on how to use the assistant
 st.markdown("""
-    <div class="instructions" style="color: lightblue;>
+    <div class="instructions" style="color: lightblue;">
         **Instructions:**
         
         1. Type your question in the text input below and click "Get Answer".
@@ -77,6 +77,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
