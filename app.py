@@ -70,13 +70,14 @@ user_query = st.text_input("Ask a question:")
 if st.button("Get Answer"):
     if user_query:
         # Display user's question as a chat bubble
-        st.markdown(f'<div class="chat-box"><div style='color: yellow; font-weight: bold'; class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="chat-box"><div style='color: yellow; font-weight: bold', class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
         response = retrieval_chain.invoke({"input": user_query})
         st.write(response["answer"])
         # Display bot's response as a chat bubble
-        st.markdown(f'<div class="chat-box"><div style='color: green; font-weight: bold'; class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="chat-box"><div style='color: green; font-weight: bold', class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
