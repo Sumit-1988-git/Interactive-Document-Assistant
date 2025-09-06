@@ -9,77 +9,6 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_retrieval_chain
 
-# Custom Styling for the Streamlit App
-st.markdown("""
-    <style>
-        body {
-            background-color: #f4f7fc;
-            font-family: 'Arial', sans-serif;
-        }
-        .stButton>button {
-            background-color: #2d87f0;
-            color: white;
-            font-size: 16px;
-            border-radius: 8px;
-            padding: 12px 24px;
-            border: none;
-        }
-        .stButton>button:hover {
-            background-color: #2768b0;
-        }
-        .stTextInput>div>input {
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 16px;
-            width: 100%;
-            border: 1px solid #d1d1d1;
-        }
-        .stTextInput>div>label {
-            font-weight: bold;
-        }
-        .stTextArea>div>textarea {
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 16px;
-            width: 100%;
-            border: 1px solid #d1d1d1;
-        }
-        .chat-box {
-            padding: 12px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            margin-top: 20px;
-        }
-        .chat-bubble {
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 12px;
-            background-color: #e6f7ff;
-            color: #333;
-            max-width: 70%;
-        }
-        .chat-bubble.user {
-            background-color: #cce5ff;
-            margin-left: auto;
-        }
-        .chat-bubble.bot {
-            background-color: #f1f1f1;
-        }
-        .error-message {
-            color: red;
-            font-weight: bold;
-        }
-        .instructions {
-            background-color: #f9f9f9;
-            padding: 16px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            margin-top: 20px;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-
 # Load and preprocess documents
 loader = DirectoryLoader(
     "Docs/",
@@ -142,12 +71,13 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
 
         # Run the retrieval_chain to get the response
-        response = retrieval_chain.run(user_query)
+        response = retrieval_chain.invoke(user_query)
 
         # Display bot's response as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
