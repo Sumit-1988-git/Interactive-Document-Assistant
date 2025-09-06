@@ -80,7 +80,8 @@ if st.button("Get Answer"):
         # Pass the correct format: both `context` and `question` in the dictionary
         response = retrieval_chain.invoke({
             "context": context,  # Correct key for context
-            "question": user_query  # Correct key for question
+            "question": user_query,  # Correct key for question
+            "input": user_query
         })
 
 
@@ -88,6 +89,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
