@@ -75,12 +75,17 @@ if st.button("Get Answer"):
 
         # Run the retrieval_chain to get the response
         context = " ".join([chunk.page_content for chunk in chunks])  # Assuming chunks contain the relevant context
-        response = retrieval_chain.invoke({"context": context, "question": user_query}) 
+        response = retrieval_chain.invoke({
+            "context": context,  # Passing the context here
+            "question": user_query  # Passing the user's query as the question
+        })
+
 
         # Display bot's response as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
