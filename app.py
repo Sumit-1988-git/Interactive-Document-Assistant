@@ -52,7 +52,7 @@ retrieval_chain = create_retrieval_chain(retriever, document_chain)
 st.title("Interactive Document Assistant")
 
 # Instructions on how to use the assistant
-st.markdown( <div class="instructions" style="color: lightblue;">
+st.markdown(""" <div class="instructions">
         **Instructions:**
         
         1. Type your question in the text input below and click "Get Answer".
@@ -60,7 +60,7 @@ st.markdown( <div class="instructions" style="color: lightblue;">
         2. The assistant will respond based on the content of the PDFs.
         
     </div>
-  , unsafe_allow_html=True)
+ """ , unsafe_allow_html=True)
 
 # Input field for user's question
 user_query = st.text_input("Ask a question:")
@@ -76,6 +76,7 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
