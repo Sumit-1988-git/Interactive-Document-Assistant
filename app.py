@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader,DirectoryLoader
 from langchain_mistralai.chat_models import ChatMistralAI
 from langchain_mistralai.embeddings import MistralAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -81,40 +81,28 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # Load and preprocess documents
-def load_documents(files):
-    documents = []
-    for file in files:
-        loader = TextLoader(file)
-        docs = loader.load()
-        documents.extend(docs)
-    return documents
+loader = DirectoryLoader(
+    "Docs/",
+    glob="**/*.txt"
+)
 
-# Specify the files
-files = ["./Docs/Cardio.txt", "./Docs/NeuroSurgery.txt", "./Docs/Orthopedic.txt", "./Docs/Pediatric.txt"]
+documents = loader.load()
 
-# Ensure the files exist at the specified paths
-for txt_file in files:
-    if not os.path.exists(txt_file):
-        st.markdown(f"<p class='error-message'>File not found: {txt_file}</p>", unsafe_allow_html=True)
-        st.stop()
-
-documents = load_documents(files)
+mistral_api_key = st.secrets["YOUR_API_KEY"]  # Ensure this is a string and correctly set
 
 # Split the documents into smaller chunks
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 chunks = text_splitter.split_documents(documents)
 
-api_key = st.secrets["YOUR_API_KEY"]  # Ensure this is a string and correctly set
-
 # Create embeddings using MistralAI
-embedding = MistralAIEmbeddings(model="mistral-embed", mistral_api_key=api_key)
+embedding = MistralAIEmbeddings(model_name='mistral-embed', mistral_api_key=mistral_api_key)
 faiss_index = FAISS.from_documents(chunks, embedding)
 
 # Set up the retriever
 retriever = faiss_index.as_retriever()
 
 # Set up the chat model using MistralAI
-chat_model = ChatMistralAI(model_name="mistral-medium", api_key=api_key)
+chat_model = ChatMistralAI(model_name="mistral-medium", api_key=mistral_api_key)
 
 # Set up the prompt
 prompt_template = """
@@ -158,9 +146,3 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
-
-
-
-
-
-
