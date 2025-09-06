@@ -38,6 +38,10 @@ chat_model = ChatMistralAI(model_name="mistral-medium", api_key=mistral_api_key)
 # Set up the prompt
 prompt = ChatPromptTemplate.from_template("""You are a helpful assistant. Based on the given context, please answer the user's question:
 
+<context>
+{context}
+</context>
+
 Question: {input}""")
 
 # Create the retrieval chain
@@ -68,6 +72,7 @@ if st.button("Get Answer"):
         # Display user's question as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
         response = retrieval_chain.invoke({"input": user_query})
+        st.write(response["answer"])
         # Display bot's response as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
@@ -86,6 +91,7 @@ if st.button("Get Answer"):
 
      
     
+
 
 
 
