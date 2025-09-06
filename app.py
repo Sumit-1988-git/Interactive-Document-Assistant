@@ -80,7 +80,7 @@ if st.button("Get Answer"):
         # Pass the correct format: both `context` and `question` in the dictionary
         response = retrieval_chain.invoke({
             "context": context,  # Correct key for context
-            "input": user_query  # Correct key for question
+            "question": user_query  # Correct key for question
         })
 
 
