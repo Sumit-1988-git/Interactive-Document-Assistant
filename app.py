@@ -71,8 +71,9 @@ if st.button("Get Answer"):
     if user_query:
         # Display user's question as a chat bubble
         st.markdown(f'<div class="chat-box"><div class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
-
-    response = retrieval_chain.invoke({"input": user_query})
+        response = retrieval_chain.invoke({"input": user_query})
+    else:
+        st.write("Please enter a question.")
 
         # Run the retrieval_chain to get the response
         # Extract context from chunks (combining them into a single string)
@@ -86,8 +87,8 @@ if st.button("Get Answer"):
         # })
 
      
-    else:
-        st.write("Please enter a question.")
+    
+
 
 
 
