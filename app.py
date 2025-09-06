@@ -70,27 +70,14 @@ user_query = st.text_input("Ask a question:")
 if st.button("Get Answer"):
     if user_query:
         # Display user's question as a chat bubble
-        st.markdown(f'<div class="chat-box"><div style='color: yellow; font-weight: bold; class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="chat-box"><div style='color: yellow; font-weight: bold'; class="chat-bubble user">{user_query}</div></div>', unsafe_allow_html=True)
         response = retrieval_chain.invoke({"input": user_query})
         st.write(response["answer"])
         # Display bot's response as a chat bubble
-        st.markdown(f'<div class="chat-box"><div style='color: green; font-weight: bold; class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="chat-box"><div style='color: green; font-weight: bold'; class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
 
-        # Run the retrieval_chain to get the response
-        # Extract context from chunks (combining them into a single string)
-        # context = " ".join([chunk.page_content for chunk in chunks])  # Assuming chunks contain the relevant context
-
-        # Pass the correct format: both `context` and `question` in the dictionary
-        # response = retrieval_chain.invoke({
-        #     "context": context,  # Correct key for context
-        #     "question": question ,  # Correct key for question
-        #     "input": user_query
-        # })
-
-     
-    
 
 
 
