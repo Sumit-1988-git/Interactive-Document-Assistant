@@ -82,8 +82,7 @@ st.markdown("""
 
 # Load and preprocess documents
 loader = DirectoryLoader(
-    "Docs/",
-    glob="**/*.txt"
+    "Docs/"
 )
 
 documents = loader.load()
@@ -146,3 +145,4 @@ if st.button("Get Answer"):
         st.markdown(f'<div class="chat-box"><div class="chat-bubble bot">{response}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
