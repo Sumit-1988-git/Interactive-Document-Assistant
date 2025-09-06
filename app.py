@@ -79,6 +79,7 @@ user_query = st.text_input("Ask a question:")
 
 # Button to submit the query
 if st.button("Get Answer"):
+    st.input_text = ""
     if user_query:
         # Display user's question as a chat bubble
         st.markdown('User:'  f'<div class="chat-box"><div class="chat-bubble user" style="color: yellow; padding: 10px; border-radius: 15px;"> {user_query}</div></div>', unsafe_allow_html=True)
@@ -87,6 +88,7 @@ if st.button("Get Answer"):
         st.markdown('Bot:'  f'<div class="chat-box"><div class="chat-bubble bot" style="color: lightgreen; padding: 10px; border-radius: 15px;">{response["answer"]}</div></div>', unsafe_allow_html=True)
     else:
         st.write("Please enter a question.")
+
 
 
 
